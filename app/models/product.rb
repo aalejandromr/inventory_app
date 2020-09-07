@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   attribute :remove_image, :boolean
   after_save -> { image.purge }, if: :remove_image
 
+  has_one :inventory
+
   rails_admin do
     field :name, :string
     field :price, :float

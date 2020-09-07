@@ -1,0 +1,21 @@
+<%= form_tag process_checkout_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: $<%= amount %></span>
+    </label>
+
+    <input type="hidden" name="charge[product_id]" value="<%= @product.id %>">
+    <input type="hidden" name="charge[quantity]" value="<%= @quantity %>">
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @quantity %> x <%= @product.name %>"
+          data-amount="<%= amount %>"
+          data-locale="auto"></script>
+<% end %>

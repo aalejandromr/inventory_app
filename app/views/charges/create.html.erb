@@ -1,0 +1,8 @@
+<% if current_user.nil? %>
+	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+<% else %>
+	<%= button_to "Sign out", destroy_user_session_path, :method => "delete" %>
+  <%= link_to root_path do %> Go Home <% end %>
+<% end %>
+
+<h2>Thanks, you paid <strong> $<%= @amount / 100 %> </strong>!</h2>
