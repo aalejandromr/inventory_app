@@ -1,6 +1,6 @@
 class HomeController < ActionController::Base
-  # skip_before_action :authenticate_user!, :only => [:index]
-
+  before_action ->{ authenticate_user!(force: false) }
   def index
+    @products = Product.all.with_attached_image
   end
 end

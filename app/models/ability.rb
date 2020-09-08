@@ -6,12 +6,12 @@ class Ability
   def initialize(user)
 
     user ||= User.new
-    # can :manage, :all
+
     if user.admin_role?
       can :manage, :all
       can :access, :rails_admin
       can :manage, :dashboard
-    elsif user.buyer_role?
+    elsif user.seller_role?
       can :access, :rails_admin
       can :manage, :dashboard
       can :manage, Product
